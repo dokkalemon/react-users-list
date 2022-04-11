@@ -1,0 +1,33 @@
+.add-user {
+    padding: 30px;
+    background-color: #e1e1e1;
+    border-radius: 10px;
+}
+
+.add-user form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-user form label {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.add-user input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.add-user input[type="submit"] {
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+}
