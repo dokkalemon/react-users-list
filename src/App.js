@@ -3,8 +3,9 @@ import Container from './components/UI/Container';
 import AddUser from './components/User/AddUser';
 import Users from './components/User/Users';
 import Alert from './components/Alert/Alert'
-function App() {
 
+
+function App() {
   //User
   const users = [
   ]
@@ -13,71 +14,54 @@ function App() {
   let name = '';
   let age = '';
 
-  
+  //State
   const [newusers, setNewUsers] = useState(users)
-
-  const [input, setInput] = useState('')
-
-
-  //Name Input Data
-  const setNameHandlerApp = (event) => {
-    name = event.target.value
-    setInput()
-  }
+  const [nameChange, setName] = useState(name);
+  const [ageChange, setAge] = useState(age)
+  const [showAlert,setShowAlert] = useState(false)
+  const [alertMessage, setAlertMessage] = useState('')
 
   
-  //show Alert
-  let showAlert = true;
-  let messageAlert = '';
   
-  const [alert, setAlert] = useState(showAlert)
-  const [messageAlertChange, setMessageAlert] = useState(messageAlert)
-  
-  //show User Container
-  let showUsers = false;
-  
-const [showUserCont, setShowUsersCont] = useState(showUsers)
-
-  //Age Input Data
-  const setAgeHandlerApp = (event) => {
-    age = event.target.value
-  }
+    //Name Input Data
+    const setNameHandlerApp = (event) => {
+      setName(event.target.value);
+    }
+    //Age Input Data
+    const setAgeHandlerApp = (event) => {
+      setAge(event.target.value);
+    }
 
   //Save User
   const saveUserHandlerApp = (event) => {
     event.preventDefault()
-    if (name === '' || age === '') {
-      setAlert(false)
-      setMessageAlert('Please enter a valide name and age (non-empty value)')
-    } else if (age < 0) {
-      setAlert(false)
-      setMessageAlert('Please enter a valide age (> 0)')
+    if (nameChange === '' || ageChange === '') {
+      setAlertMessage('I due campi sono obbligatori')
+      setShowAlert(true)
+    } else if (ageChange < 0) {
+      setAlertMessage('La data impostata non è valida')
+      setShowAlert(true)
     } else {
       let newUser = {
         id: Math.random().toString(),
-        name,
-        age,
+        name: nameChange,
+        age: ageChange,
       }
         setNewUsers([newUser, ...newusers])
-        setInput('')
-        setShowUsersCont(true)
-
-      }
+        setName('');
+        setAge('')
     }
-
-  const hideAlertApp = () => {
-    setAlert(true)
   }
 
-
+  
 
   return (
     <div>
         <Container>
-            <AddUser setNameHandler={setNameHandlerApp} setAgeHandler={setAgeHandlerApp} saveUserHandler={saveUserHandlerApp} inputStateApp={input} />
-            <Users userArray={newusers} showUsersApp={showUserCont}/>
+            <AddUser setNameHandler={setNameHandlerApp} setAgeHandler={setAgeHandlerApp} saveUserHandler={saveUserHandlerApp} nameValue={nameChange} ageValue={ageChange} />
+            {newusers.length > 0 && <Users userArray={newusers} />}
         </Container>
-        <Alert showAlertApp={alert} hideAlert={hideAlertApp}>{messageAlertChange}</Alert>
+            <Alert constAlert={showAlert} hideAlert={() => {setShowAlert(false)}}>{alertMessage}</Alert>
     </div>
   );
 }
