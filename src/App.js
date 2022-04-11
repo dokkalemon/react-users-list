@@ -23,14 +23,14 @@ function App() {
 
   
   
-    //Name Input Data
-    const setNameHandlerApp = (event) => {
-      setName(event.target.value);
-    }
-    //Age Input Data
-    const setAgeHandlerApp = (event) => {
-      setAge(event.target.value);
-    }
+  //Name Input Data
+  const setNameHandlerApp = (event) => {
+    setName(event.target.value);
+  }
+  //Age Input Data
+  const setAgeHandlerApp = (event) => {
+    setAge(event.target.value);
+  }
 
   //Save User
   const saveUserHandlerApp = (event) => {
@@ -52,8 +52,6 @@ function App() {
         setAge('')
     }
   }
-
-  
 
   return (
     <div>
