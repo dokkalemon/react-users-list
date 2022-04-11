@@ -10,14 +10,10 @@ function App() {
   const users = [
   ]
 
-  //create NewUser
-  let name = '';
-  let age = '';
-
   //State
   const [newusers, setNewUsers] = useState(users)
-  const [nameChange, setName] = useState(name);
-  const [ageChange, setAge] = useState(age)
+  const [nameChange, setName] = useState('');
+  const [ageChange, setAge] = useState('')
   const [showAlert,setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
 
